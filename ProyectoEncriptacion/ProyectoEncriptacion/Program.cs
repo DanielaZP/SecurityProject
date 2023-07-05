@@ -20,4 +20,4 @@ namespace ProyectoEncriptacion
         }
     }
 }
-//Cambios
+//Cambio realizado
