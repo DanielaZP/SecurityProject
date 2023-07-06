@@ -38,11 +38,12 @@ namespace ProyectoEncriptacion
         {
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                //Abre una ventana mostrando el contenido del archivo
                 string archivo = openFileDialog1.FileName;
                 Process proceso = new Process();
                 proceso.StartInfo.FileName = archivo;
                 proceso.Start();
-                //codigo
+                
                 textBox2.Text = openFileDialog1.FileName;
             }
         }
@@ -51,18 +52,13 @@ namespace ProyectoEncriptacion
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                 string sourceFilePath = openFileDialog1.FileName;
-
-                 //   string destinationFilePath = saveFileDialog1.FileName;
-                string destino = saveFileDialog1.FileName;
-
-                // Copiar el archivo seleccionado a la ubicación de destino
-               // File.Copy(sourceFilePath, destinationFilePath);
-                File.Copy(sourceFilePath, destino);
-
+                string sourceFilePath = openFileDialog1.FileName;
+                string destinationFilePath = saveFileDialog1.FileName;
+                 
+                // Copia el archivo seleccionado a la ubicación de destino
+                File.Copy(sourceFilePath, destinationFilePath); 
                 MessageBox.Show("El archivo se guardó exitosamente.");
                 
-                //codigo
                 textBox3.Text = saveFileDialog1.FileName;
             }
         }
