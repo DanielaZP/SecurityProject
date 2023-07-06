@@ -54,14 +54,29 @@ namespace ProyectoEncriptacion
             {
                 string sourceFilePath = openFileDialog1.FileName;
                 string destinationFilePath = saveFileDialog1.FileName;
-                 
+
+                //Obtencion de la extension del archivo seleccionado
+                string fileExtension = Path.GetExtension(sourceFilePath);
+
+                //Agregacion de la extension al archivo destino
+                string destinationFileWithExtension = Path.ChangeExtension(destinationFilePath, fileExtension);
+                
                 // Copia el archivo seleccionado a la ubicación de destino
-                File.Copy(sourceFilePath, destinationFilePath); 
+                File.Copy(sourceFilePath, destinationFileWithExtension); 
                 MessageBox.Show("El archivo se guardó exitosamente.");
                 
-                textBox3.Text = saveFileDialog1.FileName;
+                textBox3.Text = destinationFileWithExtension;
             }
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
