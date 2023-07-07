@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Security.Cryptography;
-using System.Security.Permissions;
+//using System.Security.Permissions;
 
 namespace ProyectoEncriptacion
 {
@@ -73,7 +73,12 @@ namespace ProyectoEncriptacion
 
         private void button3_Click(object sender, EventArgs e)
         {
-             
+            string inputFile = openFileDialog1.FileName;
+            string outputFile = saveFileDialog1.FileName;
+            string fileExtension = Path.GetExtension(inputFile);
+            string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
+
+            
         }
 
 
