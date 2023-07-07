@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Security.Permissions;
 
 namespace ProyectoEncriptacion
 {
@@ -62,8 +64,8 @@ namespace ProyectoEncriptacion
                 string destinationFileWithExtension = Path.ChangeExtension(destinationFilePath, fileExtension);
                 
                 // Copia el archivo seleccionado a la ubicación de destino
-                File.Copy(sourceFilePath, destinationFileWithExtension); 
-                MessageBox.Show("El archivo se guardó exitosamente.");
+                //File.Copy(sourceFilePath, destinationFileWithExtension); 
+               // MessageBox.Show("El archivo se guardó exitosamente.");
                 
                 textBox3.Text = destinationFileWithExtension;
             }
@@ -71,8 +73,9 @@ namespace ProyectoEncriptacion
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+             
         }
+
 
         private void button4_Click(object sender, EventArgs e)
         {
