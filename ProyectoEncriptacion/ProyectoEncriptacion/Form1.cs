@@ -81,6 +81,11 @@ namespace ProyectoEncriptacion
             
         }
 
+        public static void EncryptFile(string inputFile, string outputFile)
+        {
+
+        }
+
 
         private void button4_Click(object sender, EventArgs e)
         {
