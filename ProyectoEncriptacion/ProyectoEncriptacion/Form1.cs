@@ -35,14 +35,45 @@ namespace ProyectoEncriptacion
                 textBox2.Text = openFileDialog1.FileName;
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                textBox3.Text = saveFileDialog1.FileName;
+                string sourceFilePath = openFileDialog1.FileName;
+                string destinationFilePath = saveFileDialog1.FileName;
+
+                string fileExtension = Path.GetExtension(sourceFilePath);
+                string destinationFileWithExtension = Path.ChangeExtension(destinationFilePath, fileExtension);
+
+                if (File.Exists(destinationFileWithExtension))
+                {
+                    var result = MessageBox.Show("La ruta ya existe. ¿Deseas reemplazar el archivo existente?", "Ruta existente", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        textBox3.Text = destinationFileWithExtension;
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            destinationFilePath = saveFileDialog1.FileName;
+                            destinationFileWithExtension = Path.ChangeExtension(destinationFilePath, fileExtension);
+                            textBox3.Text = destinationFileWithExtension;
+                        }
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        // Cancelar el proceso de guardar
+                    }
+                }
+                else
+                {
+                    textBox3.Text = destinationFileWithExtension;
+                }
             }
         }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
