@@ -100,6 +100,32 @@ namespace ProyectoEncriptacion
 
             MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
         }
+        /*
+         
+         private void buttonDownload_Click(object sender, EventArgs e)
+        {
+            // Verificar si el archivo desencriptado existe
+            if (File.Exists(decryptedFilePath))
+            {
+                // Mostrar el cuadro de diálogo de guardar archivo
+                saveFileDialog1.FileName = Path.GetFileName(decryptedFilePath);
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string downloadPath = saveFileDialog1.FileName;
+
+                    // Copiar el archivo desencriptado al destino seleccionado
+                    File.Copy(decryptedFilePath, downloadPath, true);
+
+                    MessageBox.Show("Archivo descargado exitosamente.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("El archivo desencriptado no existe.");
+            }
+        }
+
+         */
 
         public static void EncryptFile(string inputFile, string outputFileWithExtension, string password)
         {
