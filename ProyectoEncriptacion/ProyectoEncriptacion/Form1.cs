@@ -82,9 +82,17 @@ namespace ProyectoEncriptacion
             string fileExtension = Path.GetExtension(inputFile);
             string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
 
-            string password = "";
-            EncryptFile(inputFile, outputFileWithExtension, password);
+            string password = textBox1.Text;
 
+            if (VerifyPassword(password))
+            {
+                EncryptFile(inputFile, outputFileWithExtension, password);
+            }
+            else
+            {
+                // La contraseña ingresada no es correcta, mostrar un mensaje de error o tomar alguna acción adecuada
+                MessageBox.Show("Contraseña incorrecta. No se guardará el archivo.");
+            }
             MessageBox.Show("Archivo encriptado y guardado exitosamente.");
         }
 
@@ -95,10 +103,18 @@ namespace ProyectoEncriptacion
             string fileExtension = Path.GetExtension(inputFile);
             string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
 
-            string password = "";
-            DecryptFile(inputFile, outputFileWithExtension, password);
+            string password = textBox1.Text;
+                if (VerifyPassword(password))
+                {
+                    DecryptFile(inputFile, outputFileWithExtension, password);
 
-            MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
+                }
+                else
+                {
+                    // La contraseña ingresada no es correcta, mostrar un mensaje de error o tomar alguna acción adecuada
+                    MessageBox.Show("Contraseña incorrecta. No se guardará el archivo.");
+                }
+                MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
         }
         
          /*
