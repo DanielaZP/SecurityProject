@@ -132,12 +132,18 @@ namespace ProyectoEncriptacion
                     {
                         using (CryptoStream cryptoStream = new CryptoStream(inputFileStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-                            byte[] buffer = new byte[4096];
-                            int bytesRead;
-
-                            while ((bytesRead = cryptoStream.Read(buffer, 0, buffer.Length)) > 0)
+                            using (BinaryReader reader = new BinaryReader(cryptoStream))
                             {
-                                outputFileStream.Write(buffer, 0, bytesRead);
+                                using (BinaryWriter writer = new BinaryWriter(outputFileStream))
+                                {
+                                    byte[] buffer = new byte[4096];
+                                    int bytesRead;
+
+                                    while ((bytesRead = reader.Read(buffer, 0, buffer.Length)) > 0)
+                                    {
+                                        writer.Write(buffer, 0, bytesRead);
+                                    }
+                                }
                             }
                         }
                     }
@@ -146,3 +152,4 @@ namespace ProyectoEncriptacion
         }
     }
 }
+
