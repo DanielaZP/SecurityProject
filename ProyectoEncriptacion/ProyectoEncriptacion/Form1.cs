@@ -101,7 +101,7 @@ namespace ProyectoEncriptacion
             MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
         }
         
-         
+         /*
          private void buttonDownload_Click(object sender, EventArgs e)
         {
             // Verificar si el archivo desencriptado existe
@@ -125,7 +125,7 @@ namespace ProyectoEncriptacion
             }
         }
 
-         
+         */
 
         public static void EncryptFile(string inputFile, string outputFileWithExtension, string password)
         {
