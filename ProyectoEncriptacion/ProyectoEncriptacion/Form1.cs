@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
-using System.Diagnostics;
 using System.Security.Cryptography;
+using System.Text;
+using System.Windows.Forms;
 
 namespace ProyectoEncriptacion
 {
@@ -47,13 +40,7 @@ namespace ProyectoEncriptacion
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string sourceFilePath = openFileDialog1.FileName;
-                string destinationFilePath = saveFileDialog1.FileName;
-
-                string fileExtension = Path.GetExtension(sourceFilePath);
-                string destinationFileWithExtension = Path.ChangeExtension(destinationFilePath, fileExtension);
-
-                textBox3.Text = destinationFileWithExtension;
+                textBox3.Text = saveFileDialog1.FileName;
             }
         }
 
@@ -99,7 +86,6 @@ namespace ProyectoEncriptacion
                         outputFileWithExtensionStream.Write(aes.IV, 0, aes.IV.Length);
 
                         using (CryptoStream cryptoStream = new CryptoStream(outputFileWithExtensionStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
-                        using (StreamWriter writer = new StreamWriter(cryptoStream, Encoding.UTF8))
                         {
                             byte[] buffer = new byte[4096];
                             int bytesRead;
@@ -132,18 +118,12 @@ namespace ProyectoEncriptacion
                     {
                         using (CryptoStream cryptoStream = new CryptoStream(inputFileStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-                            using (BinaryReader reader = new BinaryReader(cryptoStream))
-                            {
-                                using (BinaryWriter writer = new BinaryWriter(outputFileStream))
-                                {
-                                    byte[] buffer = new byte[4096];
-                                    int bytesRead;
+                            byte[] buffer = new byte[4096];
+                            int bytesRead;
 
-                                    while ((bytesRead = reader.Read(buffer, 0, buffer.Length)) > 0)
-                                    {
-                                        writer.Write(buffer, 0, bytesRead);
-                                    }
-                                }
+                            while ((bytesRead = cryptoStream.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                outputFileStream.Write(buffer, 0, bytesRead);
                             }
                         }
                     }
