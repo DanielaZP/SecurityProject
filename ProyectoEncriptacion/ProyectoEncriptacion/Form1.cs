@@ -35,6 +35,7 @@ namespace ProyectoEncriptacion
                 textBox2.Text = openFileDialog1.FileName;
             }
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -124,7 +125,7 @@ namespace ProyectoEncriptacion
                 MessageBox.Show("El archivo desencriptado no existe.");
             }
         }
-         //
+        
          */
 
         public static void EncryptFile(string inputFile, string outputFileWithExtension, string password)
