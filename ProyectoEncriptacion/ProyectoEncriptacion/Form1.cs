@@ -75,58 +75,59 @@ namespace ProyectoEncriptacion
             }
         }
 
-
         private void button3_Click(object sender, EventArgs e)
         {
-            string inputFile = openFileDialog1.FileName;
-            string outputFile = saveFileDialog1.FileName;
-            string fileExtension = Path.GetExtension(inputFile);
-            string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
-
-            string password = textBox1.Text;
-
-            EncryptFile(inputFile, outputFileWithExtension, password);
-            MessageBox.Show("Archivo encriptado y guardado exitosamente.");
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string inputFile = openFileDialog1.FileName;
-            string outputFile = saveFileDialog1.FileName;
-            string fileExtension = Path.GetExtension(inputFile);
-            string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
-
-            string password = textBox1.Text;
-            
-            DecryptFile(inputFile, outputFileWithExtension, password);
-            MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
-        }
-        
-         /*
-         private void buttonDownload_Click(object sender, EventArgs e)
-        {
-            // Verificar si el archivo desencriptado existe
-            if (File.Exists(decryptedFilePath))
+            if (!string.IsNullOrEmpty(openFileDialog1.FileName) && !string.IsNullOrEmpty(saveFileDialog1.FileName) && !string.IsNullOrEmpty(textBox1.Text))
             {
-                // Mostrar el cuadro de diálogo de guardar archivo
-                saveFileDialog1.FileName = Path.GetFileName(decryptedFilePath);
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                string inputFile = openFileDialog1.FileName;
+                string outputFile = saveFileDialog1.FileName;
+                string fileExtension = Path.GetExtension(inputFile);
+                string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
+
+                string password = textBox1.Text;
+
+                try
                 {
-                    string downloadPath = saveFileDialog1.FileName;
-
-                    // Copiar el archivo desencriptado al destino seleccionado
-                    File.Copy(decryptedFilePath, downloadPath, true);
-
-                    MessageBox.Show("Archivo descargado exitosamente.");
+                    EncryptFile(inputFile, outputFileWithExtension, password);
+                    MessageBox.Show("Archivo encriptado y guardado exitosamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al encriptar el archivo: " + ex.Message);
                 }
             }
             else
             {
-                MessageBox.Show("El archivo desencriptado no existe.");
+                MessageBox.Show("Por favor, asegúrate de seleccionar un archivo, especificar una ruta de destino y proporcionar una contraseña.");
             }
         }
-        
-         */
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(openFileDialog1.FileName) && !string.IsNullOrEmpty(saveFileDialog1.FileName) && !string.IsNullOrEmpty(textBox1.Text))
+            {
+                string inputFile = openFileDialog1.FileName;
+                string outputFile = saveFileDialog1.FileName;
+                string fileExtension = Path.GetExtension(inputFile);
+                string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
+
+                string password = textBox1.Text;
+
+                try
+                {
+                    DecryptFile(inputFile, outputFileWithExtension, password);
+                    MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al desencriptar el archivo: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, asegúrate de seleccionar un archivo, especificar una ruta de destino y proporcionar una contraseña.");
+            }
+        }
 
         public static void EncryptFile(string inputFile, string outputFileWithExtension, string password)
         {
@@ -177,12 +178,12 @@ namespace ProyectoEncriptacion
                     {
                         using (CryptoStream cryptoStream = new CryptoStream(inputFileStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-                              byte[] buffer = new byte[4096];
-                              int bytesRead;
+                            byte[] buffer = new byte[4096];
+                            int bytesRead;
 
                             while ((bytesRead = cryptoStream.Read(buffer, 0, buffer.Length)) > 0)
                             {
-                                 outputFileStream.Write(buffer, 0, bytesRead);
+                                outputFileStream.Write(buffer, 0, bytesRead);
                             }
                         }
                     }
@@ -191,4 +192,3 @@ namespace ProyectoEncriptacion
         }
     }
 }
-
