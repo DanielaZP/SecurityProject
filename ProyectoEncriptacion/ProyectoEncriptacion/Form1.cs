@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Security.Cryptography;
-//using System.Security.Permissions;
 
 namespace ProyectoEncriptacion
 {
@@ -38,14 +37,8 @@ namespace ProyectoEncriptacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //Abre una ventana mostrando el contenido del archivo
-                /*string archivo = openFileDialog1.FileName;
-                Process proceso = new Process();
-                proceso.StartInfo.FileName = archivo;
-                proceso.Start();*/
-               
                 textBox2.Text = openFileDialog1.FileName;
             }
         }
@@ -57,16 +50,9 @@ namespace ProyectoEncriptacion
                 string sourceFilePath = openFileDialog1.FileName;
                 string destinationFilePath = saveFileDialog1.FileName;
 
-                //Obtencion de la extension del archivo seleccionado
                 string fileExtension = Path.GetExtension(sourceFilePath);
-
-                //Agregacion de la extension al archivo destino
                 string destinationFileWithExtension = Path.ChangeExtension(destinationFilePath, fileExtension);
-                
-                // Copia el archivo seleccionado a la ubicación de destino
-                //File.Copy(sourceFilePath, destinationFileWithExtension); 
-               // MessageBox.Show("El archivo se guardó exitosamente.");
-                
+
                 textBox3.Text = destinationFileWithExtension;
             }
         }
@@ -78,13 +64,23 @@ namespace ProyectoEncriptacion
             string fileExtension = Path.GetExtension(inputFile);
             string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
 
-            //saveFileDialog1.OverwritePrompt = true;
-
             string password = "";
             EncryptFile(inputFile, outputFileWithExtension, password);
 
             MessageBox.Show("Archivo encriptado y guardado exitosamente.");
-            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string inputFile = openFileDialog1.FileName;
+            string outputFile = saveFileDialog1.FileName;
+            string fileExtension = Path.GetExtension(inputFile);
+            string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
+
+            string password = "";
+            DecryptFile(inputFile, outputFileWithExtension, password);
+
+            MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
         }
 
         public static void EncryptFile(string inputFile, string outputFileWithExtension, string password)
@@ -111,16 +107,42 @@ namespace ProyectoEncriptacion
                             while ((bytesRead = inputFileStream.Read(buffer, 0, buffer.Length)) > 0)
                             {
                                 cryptoStream.Write(buffer, 0, bytesRead);
-                            } 
+                            }
                         }
                     }
                 }
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        public static void DecryptFile(string inputFileWithExtension, string outputFile, string password)
         {
+            byte[] passwordBytes = new Rfc2898DeriveBytes(password, salt: new byte[8], iterations: 1000).GetBytes(32);
 
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = passwordBytes;
+
+                using (FileStream inputFileStream = new FileStream(inputFileWithExtension, FileMode.Open))
+                {
+                    byte[] iv = new byte[aes.IV.Length];
+                    inputFileStream.Read(iv, 0, iv.Length);
+                    aes.IV = iv;
+
+                    using (FileStream outputFileStream = new FileStream(outputFile, FileMode.Create))
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(inputFileStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                        {
+                            byte[] buffer = new byte[4096];
+                            int bytesRead;
+
+                            while ((bytesRead = cryptoStream.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                outputFileStream.Write(buffer, 0, bytesRead);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

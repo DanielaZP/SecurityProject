@@ -20,3 +20,14 @@ C:\Users\User\Source\Repos\DanielaZP\SecurityProject\ProyectoEncriptacion\Proyec
 C:\Users\User\Source\Repos\DanielaZP\SecurityProject\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.csproj.CoreCompileInputs.cache
 C:\Users\User\Source\Repos\DanielaZP\SecurityProject\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.exe
 C:\Users\User\Source\Repos\DanielaZP\SecurityProject\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.pdb
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\bin\Debug\ProyectoEncriptacion.exe.config
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\bin\Debug\ProyectoEncriptacion.exe
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\bin\Debug\ProyectoEncriptacion.pdb
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.csproj.AssemblyReference.cache
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.csproj.SuggestedBindingRedirects.cache
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.Form1.resources
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.Properties.Resources.resources
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.csproj.GenerateResource.cache
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.csproj.CoreCompileInputs.cache
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.exe
+C:\Users\Teresa\Source\Repos\SecurityProject3\ProyectoEncriptacion\ProyectoEncriptacion\obj\Debug\ProyectoEncriptacion.pdb
