@@ -78,31 +78,33 @@ namespace ProyectoEncriptacion
             string fileExtension = Path.GetExtension(inputFile);
             string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
 
-            
+            string password = "";
+            EncryptFile(inputFile, outputFileWithExtension, password);
+
+            MessageBox.Show("Archivo encriptado y guardado exitosamente.");
+
         }
 
-        public static void EncryptFile(string inputFile, string outputFile, string password)
+        public static void EncryptFile(string inputFile, string outputFileWithExtension, string password)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(inputFile);
+            byte[] passwordBytes = new Rfc2898DeriveBytes(password, salt: new byte[8], iterations: 1000).GetBytes(32);
 
             using (Aes aes = Aes.Create())
             {
-                byte[] passwordBytes = new Rfc2898DeriveBytes(password, salt: new byte[8], iterations: 1000).GetBytes(32);
                 aes.Key = passwordBytes;
                 aes.GenerateIV();
 
                 using (FileStream inputFileStream = new FileStream(inputFile, FileMode.Open))
                 {
-                    using (FileStream outputFileStream = new FileStream(outputFile, FileMode.Create))
+                    using (FileStream outputFileWithExtensionStream = new FileStream(outputFileWithExtension, FileMode.Create))
                     {
-                        outputFileStream.Write(aes.IV, 0, aes.IV.Length);
+                        outputFileWithExtensionStream.Write(aes.IV, 0, aes.IV.Length);
 
-                        using(CryptoStream cryptoStream = new CryptoStream(outputFileStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                        using (CryptoStream cryptoStream = new CryptoStream(outputFileWithExtensionStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                        using (StreamWriter writer = new StreamWriter(cryptoStream, Encoding.UTF8))
                         {
                             byte[] buffer = new byte[4096];
                             int bytesRead;
-
-                            cryptoStream.Write(bytes, 0, bytes.Length);
 
                             while ((bytesRead = inputFileStream.Read(buffer, 0, buffer.Length)) > 0)
                             {
