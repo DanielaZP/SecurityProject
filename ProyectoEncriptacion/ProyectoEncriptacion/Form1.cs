@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,11 +41,11 @@ namespace ProyectoEncriptacion
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //Abre una ventana mostrando el contenido del archivo
-                string archivo = openFileDialog1.FileName;
+                /*string archivo = openFileDialog1.FileName;
                 Process proceso = new Process();
                 proceso.StartInfo.FileName = archivo;
-                proceso.Start();
-                
+                proceso.Start();*/
+               
                 textBox2.Text = openFileDialog1.FileName;
             }
         }
@@ -78,11 +78,13 @@ namespace ProyectoEncriptacion
             string fileExtension = Path.GetExtension(inputFile);
             string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
 
+            //saveFileDialog1.OverwritePrompt = true;
+
             string password = "";
             EncryptFile(inputFile, outputFileWithExtension, password);
 
             MessageBox.Show("Archivo encriptado y guardado exitosamente.");
-
+            
         }
 
         public static void EncryptFile(string inputFile, string outputFileWithExtension, string password)
@@ -109,7 +111,7 @@ namespace ProyectoEncriptacion
                             while ((bytesRead = inputFileStream.Read(buffer, 0, buffer.Length)) > 0)
                             {
                                 cryptoStream.Write(buffer, 0, bytesRead);
-                            }
+                            } 
                         }
                     }
                 }
