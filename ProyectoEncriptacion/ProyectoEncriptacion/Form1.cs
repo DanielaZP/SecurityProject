@@ -81,9 +81,37 @@ namespace ProyectoEncriptacion
             
         }
 
-        public static void EncryptFile(string inputFile, string outputFile)
+        public static void EncryptFile(string inputFile, string outputFile, string password)
         {
+            byte[] bytes = Encoding.UTF8.GetBytes(inputFile);
 
+            using (Aes aes = Aes.Create())
+            {
+                byte[] passwordBytes = new Rfc2898DeriveBytes(password, salt: new byte[8], iterations: 1000).GetBytes(32);
+                aes.Key = passwordBytes;
+                aes.GenerateIV();
+
+                using (FileStream inputFileStream = new FileStream(inputFile, FileMode.Open))
+                {
+                    using (FileStream outputFileStream = new FileStream(outputFile, FileMode.Create))
+                    {
+                        outputFileStream.Write(aes.IV, 0, aes.IV.Length);
+
+                        using(CryptoStream cryptoStream = new CryptoStream(outputFileStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                        {
+                            byte[] buffer = new byte[4096];
+                            int bytesRead;
+
+                            cryptoStream.Write(bytes, 0, bytes.Length);
+
+                            while ((bytesRead = inputFileStream.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                cryptoStream.Write(buffer, 0, bytesRead);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
 
