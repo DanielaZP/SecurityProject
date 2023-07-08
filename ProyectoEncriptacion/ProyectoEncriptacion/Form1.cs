@@ -84,15 +84,7 @@ namespace ProyectoEncriptacion
 
             string password = textBox1.Text;
 
-            if (VerifyPassword(password))
-            {
-                EncryptFile(inputFile, outputFileWithExtension, password);
-            }
-            else
-            {
-                // La contraseña ingresada no es correcta, mostrar un mensaje de error o tomar alguna acción adecuada
-                MessageBox.Show("Contraseña incorrecta. No se guardará el archivo.");
-            }
+            EncryptFile(inputFile, outputFileWithExtension, password);
             MessageBox.Show("Archivo encriptado y guardado exitosamente.");
         }
 
@@ -104,17 +96,9 @@ namespace ProyectoEncriptacion
             string outputFileWithExtension = Path.ChangeExtension(outputFile, fileExtension);
 
             string password = textBox1.Text;
-                if (VerifyPassword(password))
-                {
-                    DecryptFile(inputFile, outputFileWithExtension, password);
-
-                }
-                else
-                {
-                    // La contraseña ingresada no es correcta, mostrar un mensaje de error o tomar alguna acción adecuada
-                    MessageBox.Show("Contraseña incorrecta. No se guardará el archivo.");
-                }
-                MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
+            
+            DecryptFile(inputFile, outputFileWithExtension, password);
+            MessageBox.Show("Archivo desencriptado y guardado exitosamente.");
         }
         
          /*
@@ -192,12 +176,12 @@ namespace ProyectoEncriptacion
                     {
                         using (CryptoStream cryptoStream = new CryptoStream(inputFileStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-                            byte[] buffer = new byte[4096];
-                            int bytesRead;
+                              byte[] buffer = new byte[4096];
+                              int bytesRead;
 
                             while ((bytesRead = cryptoStream.Read(buffer, 0, buffer.Length)) > 0)
                             {
-                                outputFileStream.Write(buffer, 0, bytesRead);
+                                 outputFileStream.Write(buffer, 0, bytesRead);
                             }
                         }
                     }
