@@ -124,7 +124,7 @@ namespace ProyectoEncriptacion
                 MessageBox.Show("El archivo desencriptado no existe.");
             }
         }
-
+         //
          */
 
         public static void EncryptFile(string inputFile, string outputFileWithExtension, string password)
