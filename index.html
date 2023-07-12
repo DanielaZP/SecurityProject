@@ -7,24 +7,25 @@
   </head>
 
   <body>
-     <form class="registro">
+     <form class="registro" action="guardarDatosRegistro.php" method="POST">
         <img src="Imagenes/Logo.jpg" class="avatar">
-      <h1>Bienvenidos</h1>
+      <h1>Registro</h1>
       <div class="cuadro">
         <div class="input-cuadro">
             <!-- USERNAME INPUT -->
         <label for="Username">Username</label>
-        <input type="text" placeholder="Ingrese su nombre de usuario">
+        <input type="text" id="Username" name="Username" placeholder="Ingrese su nombre de usuario">
         <!-- EMAIL ADDRESS INPUT -->
         <label for="Email Address">Email Address</label>
-        <input type="text" placeholder="Ingrese la direccion de su correo electronico">
+        <input type="text" id="email" name="email" placeholder="Ingrese la direccion de su correo electronico">
         <!-- PASSWORD INPUT -->
         <label for="password">Contraseña</label>
-        <input type="password" placeholder="Ingrese contraseña">
+        <input type="password"  id="password" name="password" placeholder="Ingrese contraseña">
         </div>
 
-        <input type="submit" value="Registrarse" class="button">
+        <input type="submit" value="Registrarse" class="button" href="registro_exitoso.html" >
         <p>¿Ya tienes una cuenta? <a class="link" href="Login.html">Iniciar Sesion</a></p>
+        
       </div>
      </form>
     
