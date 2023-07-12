@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Compression;
+///////
 
 namespace ProyectoEncriptacion
 {
