@@ -1,0 +1,12 @@
+{
+    "php.stubs": [
+        "*",
+        "pgsql"
+    ],
+    "intelephense.environment.phpVersion": "8.1.12 ",
+    "html.format.templating": true,
+    "fiveServer.php.executable": "C:\\xampp\\php\\php.exe",
+    "fiveServer.php.ini": "C:\\xampp\\php\\php.ini",
+    "liveServer.settings.useWebExt": true,
+    "liveServer.settings.port": 5501
+}

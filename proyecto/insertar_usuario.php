@@ -1,34 +1,21 @@
 <?php
-// Datos de conexión a la base de datos
-$host = 'localhost'; // Nombre o dirección IP del servidor PostgreSQL
-$dbname = 'encriptacion'; // Nombre de la base de datos
-$user = 'postgres'; // Nombre de usuario de la base de datos
-$password = 'Pincholin7'; // Contraseña del usuario de la base de datos
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Recuperar los datos enviados por el formulario
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+$host = 'localhost';
+$dbname = 'security';
+$user = 'postgres';
+$bd_password = 'password';
 
-var_dump($_POST); // Agregado para imprimir los datos enviados por el formulario
+$guardar = pg_connect("host=$host dbname=$dbname user=$user password=$bd_password");
 
-try {
-    // Conexión a la base de datos utilizando PDO
-    $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+$username = isset($_POST['username']) ? $_POST['username'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$contrasena = isset($_POST['contrasena']) ? $_POST['contrasena'] : '';
 
-    // Preparar la consulta SQL para insertar los datos en la tabla "usuarios"
-    $query = "INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)";
-    $statement = $pdo->prepare($query);
+$insertarbd = "INSERT INTO usuarios (username, email, contrasena) VALUES ('$username', '$email', '$contrasena')";
 
-    // Ejecutar la consulta con los valores proporcionados por el usuario
-    $statement->execute([$username, $email, $password]);
+$consulta = pg_query($guardar, $insertarbd);
 
-    // Redireccionar al usuario a una página de registro exitoso
-    header("Location: registro_exitoso.html");
-    exit();
-} catch (PDOException $e) {
-    // Manejo de errores de la base de datos
-    echo "Error al insertar los datos en la base de datos: " . $e->getMessage();
-    exit();
-}
+echo 'Guardado';
 ?>
