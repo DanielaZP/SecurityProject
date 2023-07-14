@@ -21,7 +21,7 @@
         </div>
 
         <input type="submit" value="Login" class="button">
-        <p>¿No tienes una cuenta? <a class="link" href="index.html">Registrate</a></p>
+        <p>¿No tienes una cuenta? <a class="link" href="index.php">Registrate</a></p>
       </div>
      </form>
     

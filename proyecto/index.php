@@ -20,7 +20,7 @@
             <input type="password" name="contrasena" placeholder="Ingrese contraseña">
           </div>
           <input type="submit" value="Registrarse" class="button">
-          <p>¿Ya tienes una cuenta? <a class="link" href="Login.html">Iniciar Sesión</a></p>
+          <p>¿Ya tienes una cuenta? <a class="link" href="Login.php">Iniciar Sesión</a></p>
         </div>
       </form>
     </div>
