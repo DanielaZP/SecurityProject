@@ -8,5 +8,6 @@
     "fiveServer.php.executable": "C:\\xampp\\php\\php.exe",
     "fiveServer.php.ini": "C:\\xampp\\php\\php.ini",
     "liveServer.settings.useWebExt": true,
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "dotnet.defaultSolution": "ProyectoEncriptacion/ProyectoEncriptacion.sln"
 }
