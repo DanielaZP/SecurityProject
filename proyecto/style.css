@@ -5,18 +5,22 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
 * {
     box-sizing: border-box;
 }
-.cuadro{
+
+.cuadro {
     width: 100%;
     padding: 10px;
 }
-.registro{
+
+.registro {
     background: #fff;
     margin-top: 150px;
     padding: 20px;
 }
+
 .avatar {
     width: 100px;
     height: 100px;
@@ -24,59 +28,74 @@ body {
     position: absolute;
     top: 100px;
     left: calc(50% - 50px);
-  }
-h1{
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+h1 {
     text-align: center;
     color: #1a2537;
     font-size: 40px;
 }
+
 input[type="text"],
-input[type="password"]{
+input[type="password"] {
     font-size: 15px;
     width: 100%;
     padding: 15px;
     border: none;
 }
-.input-cuadro{
+
+.input-cuadro {
     margin-bottom: 15px;
 }
-.input-cuadro label{
+
+.input-cuadro label {
     margin: 0;
     padding: 5px;
     font-weight:bold;
     display:block;
 }
-.button{
+
+.button {
     border: none;
     width: 100%;
     color: white;
     font-size: 20px;
-    background:  #1a2537;
+    background: #1a2537;
     padding: 15px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
-.button:hover{
+
+.button:hover {
     background: cadetblue;
 }
-p{
+
+p {
     text-align: center;
+    margin-top: 10px; /* Nueva línea agregada */
 }
-.link{
+
+.link {
     text-decoration: none;
-      color: #1a2537;
+    color: #1a2537;
     font-weight: 600;
 }
-.link:hover{
-     color: cadetblue;
+
+.link:hover {
+    color: cadetblue;
 }
-@media(min-width:768px)
-{
-    .registro{
+
+@media (min-width: 768px) {
+    .registro {
         margin: auto;
         width: 500px;
         margin-top: 150px;
         border-radius: 2%;
     }
 }
-

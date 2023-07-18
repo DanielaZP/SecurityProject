@@ -1,9 +1,6 @@
 <?php
 include 'db_connection.php';
 
-// Definir una variable para almacenar el mensaje de error
-$error_message = '';
-
 // Verificar si se envió el formulario de registro
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
@@ -12,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contrasena = $_POST['contrasena'];
 
     // Verificar si el correo electrónico existe utilizando el servicio ZeroBounce
-    $apiKey = 'b82c21c1e31e4559a897fd8f319036bb';
+    $apiKey = '6b82fbf882f84af99fe7b4a47cd57ef5';
     $emailEncoded = urlencode($email); // Codificar el correo electrónico para incluirlo en el URL
     $url = "https://api.zerobounce.net/v2/validate?api_key=$apiKey&email=$emailEncoded";
     $response = file_get_contents($url);
@@ -21,25 +18,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar la respuesta de la API de ZeroBounce
     if ($result && isset($result->status)) {
         if ($result->status === 'valid') {
-            // Verificar si la contraseña es segura
-            if (esContrasenaFuerte($contrasena)) {
-                // Encriptar la contraseña
-                $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
+            // Verificar si el usuario o el correo electrónico ya están registrados
+            $query = "SELECT * FROM usuarios WHERE username = '$username' OR email = '$email'";
+            $existingUser = pg_query($conn, $query);
 
-                // Insertar los datos en la tabla usuarios
-                $query = "INSERT INTO usuarios (username, email, contrasena) VALUES ('$username', '$email', '$hashedPassword')";
-                $insertResult = pg_query($conn, $query);
-
-                // Verificar si la inserción fue exitosa
-                if ($insertResult) {
-                    // Redireccionar a "autenticacion.php"
-                    header("Location: autenticacion.php");
-                    exit();
-                } else {
-                    $error_message = "Error al insertar los datos";
-                }
+            if (pg_num_rows($existingUser) > 0) {
+                $error_message = "El usuario o el correo electrónico ya están registrados";
             } else {
-                $error_message = "La contraseña debe tener al menos 8 caracteres y contener letras mayúsculas, minúsculas y números.";
+                // Verificar si la contraseña es segura
+                if (esContrasenaFuerte($contrasena)) {
+                    // Encriptar la contraseña
+                    $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
+
+                    // Insertar los datos en la tabla usuarios
+                    $query = "INSERT INTO usuarios (username, email, contrasena) VALUES ('$username', '$email', '$hashedPassword')";
+                    $insertResult = pg_query($conn, $query);
+
+                    // Verificar si la inserción fue exitosa
+                    if ($insertResult) {
+                        // Redireccionar a "autenticacion.php"
+                        header("Location: autenticacion.php");
+                        exit();
+                    } else {
+                        $error_message = "Error al insertar los datos";
+                    }
+                } else {
+                    $error_message = "La contraseña debe tener al menos 8 caracteres y contener letras mayúsculas, minúsculas y números.";
+                }
             }
         } elseif ($result->status === 'invalid') {
             $error_message = "Ingrese un correo electrónico válido";
@@ -76,6 +81,13 @@ function esContrasenaFuerte($contrasena)
     <meta charset="utf-8">
     <title>Login de Usuarios | Encriptacion</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <img src="Imagenes/Logo.jpg" class="avatar">
