@@ -3,30 +3,38 @@ include 'db_connection.php';
 
 // Verificar si se envió el formulario de registro
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $contrasena = $_POST['contrasena'];
+    // Obtener los datos del formulario y aplicar filtrado
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $contrasena = filter_input(INPUT_POST, 'contrasena', FILTER_SANITIZE_STRING);
 
-    // Verificar si el correo electrónico existe utilizando el servicio ZeroBounce
-    $apiKey = '6b82fbf882f84af99fe7b4a47cd57ef5';
-    $emailEncoded = urlencode($email); // Codificar el correo electrónico para incluirlo en el URL
-    $url = "https://api.zerobounce.net/v2/validate?api_key=$apiKey&email=$emailEncoded";
-    $response = file_get_contents($url);
-    $result = json_decode($response);
+    // Validar los datos ingresados
+    if (empty($username) || empty($email) || empty($contrasena)) {
+        $error_message = "Todos los campos son requeridos";
+    } elseif (!preg_match('/^[a-zA-Z0-9]+$/', $username)) {
+        $error_message = "El nombre de usuario solo puede contener letras y números";
+    } elseif (!$email) {
+        $error_message = "Ingrese un correo electrónico válido";
+    } elseif (!esContrasenaFuerte($contrasena)) {
+        $error_message = "La contraseña debe tener al menos 8 caracteres y contener letras mayúsculas, minúsculas y números.";
+    } else {
+        // Verificar si el usuario o el correo electrónico ya están registrados
+        $query = "SELECT * FROM usuarios WHERE username = '$username' OR email = '$email'";
+        $existingUser = pg_query($conn, $query);
 
-    // Verificar la respuesta de la API de ZeroBounce
-    if ($result && isset($result->status)) {
-        if ($result->status === 'valid') {
-            // Verificar si el usuario o el correo electrónico ya están registrados
-            $query = "SELECT * FROM usuarios WHERE username = '$username' OR email = '$email'";
-            $existingUser = pg_query($conn, $query);
+        if (pg_num_rows($existingUser) > 0) {
+            $error_message = "El usuario o el correo electrónico ya están registrados";
+        } else {
+            // Verificar si el correo electrónico existe utilizando el servicio ZeroBounce
+            $apiKey = '6b82fbf882f84af99fe7b4a47cd57ef5';
+            $emailEncoded = urlencode($email); // Codificar el correo electrónico para incluirlo en el URL
+            $url = "https://api.zerobounce.net/v2/validate?api_key=$apiKey&email=$emailEncoded";
+            $response = file_get_contents($url);
+            $result = json_decode($response);
 
-            if (pg_num_rows($existingUser) > 0) {
-                $error_message = "El usuario o el correo electrónico ya están registrados";
-            } else {
-                // Verificar si la contraseña es segura
-                if (esContrasenaFuerte($contrasena)) {
+            // Verificar la respuesta de la API de ZeroBounce
+            if ($result && isset($result->status)) {
+                if ($result->status === 'valid') {
                     // Encriptar la contraseña
                     $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
 
@@ -42,19 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     } else {
                         $error_message = "Error al insertar los datos";
                     }
+                } elseif ($result->status === 'invalid') {
+                    $error_message = "Ingrese un correo electrónico válido";
+                } elseif ($result->status === 'unknown') {
+                    $error_message = "No se pudo verificar el correo electrónico en este momento";
                 } else {
-                    $error_message = "La contraseña debe tener al menos 8 caracteres y contener letras mayúsculas, minúsculas y números.";
+                    $error_message = "Respuesta inválida de la API ZeroBounce";
                 }
+            } else {
+                $error_message = "No se pudo conectar con la API ZeroBounce";
             }
-        } elseif ($result->status === 'invalid') {
-            $error_message = "Ingrese un correo electrónico válido";
-        } elseif ($result->status === 'unknown') {
-            $error_message = "No se pudo verificar el correo electrónico en este momento";
-        } else {
-            $error_message = "Respuesta inválida de la API ZeroBounce";
         }
-    } else {
-        $error_message = "No se pudo conectar con la API ZeroBounce";
     }
 }
 
