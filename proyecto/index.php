@@ -8,28 +8,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $contrasena = $_POST['contrasena'];
 
-    // Validar el formato del correo electrónico
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Ingrese un correo electrónico válido";
-        exit();
-    }
+    // Verificar si el correo electrónico existe utilizando el servicio ZeroBounce
+    $apiKey = '047aec4e64bf4d509adface10c6f3f44';
+    $emailEncoded = urlencode($email); // Codificar el correo electrónico para incluirlo en el URL
+    $url = "https://api.zerobounce.net/v2/validate?api_key=$apiKey&email=$emailEncoded";
+    $response = file_get_contents($url);
+    $result = json_decode($response);
 
-    // Encriptar la contraseña
-    $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
+    // Verificar la respuesta de la API de ZeroBounce
+    if ($result && isset($result->status)) {
+        if ($result->status === 'valid') {
+            // Encriptar la contraseña
+            $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
 
-    // Insertar los datos en la tabla usuarios
-    $query = "INSERT INTO usuarios (username, email, contrasena) VALUES ('$username', '$email', '$hashedPassword')";
-    $result = pg_query($conn, $query);
+            // Insertar los datos en la tabla usuarios
+            $query = "INSERT INTO usuarios (username, email, contrasena) VALUES ('$username', '$email', '$hashedPassword')";
+            $insertResult = pg_query($conn, $query);
 
-    // Verificar si la inserción fue exitosa
-    if ($result) {
-        // Redireccionar a "autenticacion.php"
-        header("Location: autenticacion.php");
-        exit();
+            // Verificar si la inserción fue exitosa
+            if ($insertResult) {
+                // Redireccionar a "autenticacion.php"
+                header("Location: autenticacion.php");
+                exit();
+            } else {
+                echo "Error al insertar los datos";
+            }
+        } elseif ($result->status === 'invalid') {
+            echo "Ingrese un correo electrónico válido";
+        } elseif ($result->status === 'unknown') {
+            echo "No se pudo verificar el correo electrónico en este momento";
+        } else {
+            echo "Respuesta inválida de la API ZeroBounce";
+        }
     } else {
-        echo "Error al insertar los datos";
+        echo "No se pudo conectar con la API ZeroBounce";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
