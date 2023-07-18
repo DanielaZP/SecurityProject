@@ -1,6 +1,9 @@
 <?php
 include 'db_connection.php';
 
+// Definir una variable para almacenar el mensaje de error
+$error_message = '';
+
 // Verificar si se envió el formulario de registro
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
@@ -9,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contrasena = $_POST['contrasena'];
 
     // Verificar si el correo electrónico existe utilizando el servicio ZeroBounce
-    $apiKey = '047aec4e64bf4d509adface10c6f3f44';
+    $apiKey = 'b82c21c1e31e4559a897fd8f319036bb';
     $emailEncoded = urlencode($email); // Codificar el correo electrónico para incluirlo en el URL
     $url = "https://api.zerobounce.net/v2/validate?api_key=$apiKey&email=$emailEncoded";
     $response = file_get_contents($url);
@@ -18,33 +21,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar la respuesta de la API de ZeroBounce
     if ($result && isset($result->status)) {
         if ($result->status === 'valid') {
-            // Encriptar la contraseña
-            $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
+            // Verificar si la contraseña es segura
+            if (esContrasenaFuerte($contrasena)) {
+                // Encriptar la contraseña
+                $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
 
-            // Insertar los datos en la tabla usuarios
-            $query = "INSERT INTO usuarios (username, email, contrasena) VALUES ('$username', '$email', '$hashedPassword')";
-            $insertResult = pg_query($conn, $query);
+                // Insertar los datos en la tabla usuarios
+                $query = "INSERT INTO usuarios (username, email, contrasena) VALUES ('$username', '$email', '$hashedPassword')";
+                $insertResult = pg_query($conn, $query);
 
-            // Verificar si la inserción fue exitosa
-            if ($insertResult) {
-                // Redireccionar a "autenticacion.php"
-                header("Location: autenticacion.php");
-                exit();
+                // Verificar si la inserción fue exitosa
+                if ($insertResult) {
+                    // Redireccionar a "autenticacion.php"
+                    header("Location: autenticacion.php");
+                    exit();
+                } else {
+                    $error_message = "Error al insertar los datos";
+                }
             } else {
-                echo "Error al insertar los datos";
+                $error_message = "La contraseña debe tener al menos 8 caracteres y contener letras mayúsculas, minúsculas y números.";
             }
         } elseif ($result->status === 'invalid') {
-            echo "Ingrese un correo electrónico válido";
+            $error_message = "Ingrese un correo electrónico válido";
         } elseif ($result->status === 'unknown') {
-            echo "No se pudo verificar el correo electrónico en este momento";
+            $error_message = "No se pudo verificar el correo electrónico en este momento";
         } else {
-            echo "Respuesta inválida de la API ZeroBounce";
+            $error_message = "Respuesta inválida de la API ZeroBounce";
         }
     } else {
-        echo "No se pudo conectar con la API ZeroBounce";
+        $error_message = "No se pudo conectar con la API ZeroBounce";
     }
 }
 
+// Función para verificar si la contraseña es segura
+function esContrasenaFuerte($contrasena)
+{
+    // Verificar la longitud de la contraseña
+    if (strlen($contrasena) < 8) {
+        return false;
+    }
+
+    // Verificar si contiene letras mayúsculas, minúsculas y números
+    if (!preg_match('/[A-Z]/', $contrasena) || !preg_match('/[a-z]/', $contrasena) || !preg_match('/[0-9]/', $contrasena)) {
+        return false;
+    }
+
+    return true;
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +93,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <input type="submit" value="Registrarse" class="button">
                 <p>¿Ya tienes una cuenta? <a class="link" href="Login.php">Iniciar Sesión</a></p>
+                <?php
+                // Mostrar el mensaje de error si existe
+                if (!empty($error_message)) {
+                    echo "<div class='error'>$error_message</div>";
+                }
+                ?>
             </div>
         </form>
     </div>
