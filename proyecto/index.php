@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error_message = "El usuario o el correo electrónico ya están registrados";
         } else {
             // Verificar si el correo electrónico existe utilizando el servicio ZeroBounce
-            $apiKey = '6b82fbf882f84af99fe7b4a47cd57ef5';
+            $apiKey = '8034085449e041778520a8feb70fa15b';
             $emailEncoded = urlencode($email); // Codificar el correo electrónico para incluirlo en el URL
             $url = "https://api.zerobounce.net/v2/validate?api_key=$apiKey&email=$emailEncoded";
             $response = file_get_contents($url);
