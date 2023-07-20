@@ -1,0 +1,170 @@
+2023-07-20 07:37:50: 
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\frame_4.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrspec.php on line 568
+
+Warning: mkdir(): No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 154
+
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_0\mask_33_0.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 155
+
+Warning: mkdir(): No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 154
+
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_1\mask_33_1.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 155
+
+Warning: mkdir(): No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 154
+
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_2\mask_33_2.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 155
+
+Warning: mkdir(): No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 154
+
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_3\mask_33_3.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 155
+
+Warning: mkdir(): No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 154
+
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_4\mask_33_4.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 155
+
+Warning: mkdir(): No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 154
+
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_5\mask_33_5.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 155
+
+Warning: mkdir(): No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 154
+
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_6\mask_33_6.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 155
+
+Warning: mkdir(): No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 154
+
+Warning: file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_7\mask_33_7.dat): Failed to open stream: No such file or directory in C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php on line 155
+2023-07-20 07:42:02: <br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\frame_4.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_0\mask_33_0.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_1\mask_33_1.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_2\mask_33_2.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_3\mask_33_3.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_4\mask_33_4.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_5\mask_33_5.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_6\mask_33_6.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_7\mask_33_7.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+2023-07-20 07:44:59: <br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\frame_4.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_0\mask_33_0.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_1\mask_33_1.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_2\mask_33_2.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_3\mask_33_3.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_4\mask_33_4.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_5\mask_33_5.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_6\mask_33_6.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_7\mask_33_7.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+2023-07-20 09:40:28: <br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\frame_5.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_0\mask_37_0.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_1\mask_37_1.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_2\mask_37_2.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_3\mask_37_3.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_4\mask_37_4.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_5\mask_37_5.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_6\mask_37_6.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_7\mask_37_7.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+2023-07-20 09:46:36: <br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\frame_5.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrspec.php</b> on line <b>568</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_0\mask_37_0.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_1\mask_37_1.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_2\mask_37_2.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_3\mask_37_3.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_4\mask_37_4.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_5\mask_37_5.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_6\mask_37_6.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />
+<br />
+<b>Warning</b>:  mkdir(): No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>154</b><br />
+<br />
+<b>Warning</b>:  file_put_contents(C:\Users\Teresa\SecurityProject-6\proyecto\cache\mask_7\mask_37_7.dat): Failed to open stream: No such file or directory in <b>C:\Users\Teresa\SecurityProject-6\proyecto\qrmask.php</b> on line <b>155</b><br />

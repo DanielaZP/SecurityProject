@@ -9,5 +9,5 @@
     "fiveServer.php.ini": "C:\\xampp\\php\\php.ini",
     "liveServer.settings.useWebExt": true,
     "liveServer.settings.port": 5501,
-    "dotnet.defaultSolution": "SecurityProject-6.sln"
+    "dotnet.defaultSolution": "proyecto/SecurityProject-6.sln"
 }

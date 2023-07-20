@@ -1,5 +1,10 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 include 'db_connection.php';
+require 'vendor/autoload.php'; 
 
 // Verificar si se envió el formulario de registro
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -44,8 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     // Verificar si la inserción fue exitosa
                     if ($insertResult) {
+                        // Envía el correo de confirmación al usuario
+                        mailConfirmation($email);
+
                         // Redireccionar a "autenticacion.php"
-                        header("Location: autenticacion.php");
+                        header("Location: inicio.php");
                         exit();
                     } else {
                         $error_message = "Error al insertar los datos";
@@ -90,6 +98,34 @@ function esContrasenaFuerte($contrasena)
     return true;
 }
 
+// Función para enviar el correo de confirmación al usuario
+function mailConfirmation($email)
+{
+    require 'vendor/autoload.php';
+
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = '202103856@est.umss.edu';
+        $mail->Password = 'pxzottnypumfnumg';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->setFrom('202103856@est.umss.edu', 'Teresa');
+        $mail->addAddress($email); 
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Confirmacion de Registro';
+        $mail->Body = 'Hola,<br>Gracias por registrarte en nuestro sitio. Tu registro ha sido confirmado correctamente.';
+        $mail->send();
+    } catch (Exception $e) {
+        echo 'Mensaje ' . $mail->ErrorInfo;
+    }
+}
 ?>
 
 <!DOCTYPE html>

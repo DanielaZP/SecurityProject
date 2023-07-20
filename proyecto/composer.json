@@ -1,0 +1,28 @@
+{
+    "name": "teresa/security-project-6",
+    "description": "proyecto de seguridad",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Teresa\\SecurityProject6\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Teresavz",
+            "email": "202103856@est.umss.edu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "spomky-labs/otphp": "^10.0",
+       
+        "phpmailer/phpmailer": "^6.8",
+        "bacon/bacon-qr-code": "^1.0",
+        "chillerlan/php-qrcode": "^4.0"
+        
+               
+          
+    }
+}
