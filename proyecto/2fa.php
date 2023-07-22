@@ -44,6 +44,7 @@ if (isset($_POST['codigo'])) {
 
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
