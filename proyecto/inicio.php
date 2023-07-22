@@ -68,15 +68,21 @@
                 // Desencriptar usando AES
                 var decryptedData = CryptoJS.AES.decrypt(fileData, password);
                 var decryptedText = decryptedData.toString(CryptoJS.enc.Utf8);
-
+                
+                //Verifica si contiene datos validos
+                if(decryptedText){
                 // Crear un enlace para descargar el archivo desencriptado
                 var downloadLink = document.createElement('a');
                 downloadLink.href = 'data:application/octet-stream,' + encodeURIComponent(decryptedText);
-                downloadLink.download = file.name.replace(/\.([^/.]+)$/, '_desencriptado.$1'); // Nombre desencriptado con la misma extensión
+                downloadLink.download = file.name.replace(/_encriptado\.([^/.]+)$/, '_desencriptado.$1'); // Nombre desencriptado con la misma extensión
                 downloadLink.click();
+                }else{
+                    alert('Error al desencriptar el archivo. Contraseña incorrecta o archivo corrupto.');
+                }
             };
             reader.readAsText(file);
         }
     </script>
 </body>
 </html>
+
