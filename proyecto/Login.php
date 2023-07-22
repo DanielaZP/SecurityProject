@@ -1,6 +1,85 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 include 'db_connection.php';
+use OTPHP\TOTP;
+require 'vendor/autoload.php';
 
+// Función para codificar en base32
+function base32Encode($input)
+{
+    $base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+
+    $inputLength = strlen($input);
+    $binaryString = '';
+    for ($i = 0; $i < $inputLength; $i++) {
+        $binaryString .= sprintf('%08b', ord($input[$i]));
+    }
+
+    $base32String = '';
+    $binaryStringLength = strlen($binaryString);
+    $paddingLength = 8 - ($binaryStringLength % 8);
+    if ($paddingLength !== 8) {
+        $binaryString .= str_repeat('0', $paddingLength);
+    }
+
+    $segments = str_split($binaryString, 5);
+    foreach ($segments as $segment) {
+        $index = bindec($segment);
+        $base32String .= $base32Chars[$index];
+    }
+
+    return $base32String;
+}
+
+// Lógica para obtener el secret aleatorio
+$secret = generateRandomSecret();
+
+// Generar el código QR
+$qrCodeUrl = generateQRCode($secret);
+
+// Función para generar un secret aleatorio de longitud $length
+function generateRandomSecret($length = 32)
+{
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+    $charactersLength = strlen($characters);
+    $randomSecret = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomSecret .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomSecret;
+}
+
+// Función para generar un código QR en base al secret proporcionado
+function generateQRCode($secret)
+{
+    $label = 'MyApp'; 
+
+    if (empty($label)) {
+        throw new \InvalidArgumentException("The label is not set.");
+    }
+
+    $otp = TOTP::create($secret, 30, 'SHA1', 6); // Configuramos el tamaño del código en 6 dígitos y el algoritmo SHA-1
+    $otp->setLabel($label); // Configurar la etiqueta en el objeto TOTP
+    $otp->setIssuer($label); // Especificar el emisor del token (mismo valor que la etiqueta)
+    $otpUri = $otp->getProvisioningUri();
+
+    return 'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . urlencode($otpUri);
+}
+
+// Lógica para obtener el secret aleatorio
+$secret = generateRandomSecret();
+
+// Generar el código QR
+$qrCodeUrl = generateQRCode($secret);
+
+// Lógica para verificar el código ingresado por el usuario
+$isValidCode = false;
+if (isset($_POST['codigo'])) {
+    $codigoUsuario = $_POST['codigo'];
+    $otp = TOTP::create($secret, 30, 'SHA1', 6);
+    $isValidCode = $otp->verify($codigoUsuario);
+}
 // Definir la duración del bloqueo en segundos (1 hora)
 $block_duration = 3600;
 
@@ -27,8 +106,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Verificar si la contraseña coincide utilizando password_verify()
             if (password_verify($contrasena, $user['contrasena'])) {
+                
+            
+                 enviarCorreo($user['email'], $qrCodeUrl);
+
                 // Contraseña válida, redireccionar a "inicio.php"
-                header("Location: inicio.php");
+                header("Location: 2fa.php");
                 exit();
             } else {
                 // Contraseña incorrecta, incrementar el contador de intentos fallidos
@@ -141,6 +224,39 @@ function blockAccount($email, $duration)
     $insert_query = "INSERT INTO bloqueo_cuenta (email, block_start_time, block_duration) VALUES ('$email', $block_start_time, $duration)";
     pg_query($conn, $insert_query);
 }
+
+
+
+// Función para enviar el correo de confirmación al usuario con el código QR
+function enviarCorreo($email, $qrCodeUrl)
+{
+    require 'vendor/autoload.php';
+
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = '202103856@est.umss.edu';
+        $mail->Password = 'pxzottnypumfnumg';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->setFrom('202103856@est.umss.edu', 'Teresa');
+        $mail->addAddress($email); 
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Código QR para verificación en dos pasos';
+        $mail->Body = 'Aquí está tu código QR para la verificación en dos pasos:<br><img src="' . $qrCodeUrl . '" alt="Código QR">';
+        $mail->send();
+    } catch (Exception $e) {
+        echo 'Mensaje ' . $mail->ErrorInfo;
+    }
+}
+?>
+
 
 ?>
 
