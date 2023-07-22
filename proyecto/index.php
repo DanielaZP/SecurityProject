@@ -2,9 +2,6 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-use OTPHP\TOTP;
-use Base32\Base32;
-
 
 include 'db_connection.php';
 require 'vendor/autoload.php'; 
@@ -34,8 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error_message = "El usuario o el correo electrónico ya están registrados";
         } else {
 
-         // Generar el secreto y encriptar la contraseña
-         $secret = generateRandomSecret();
          $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);   
 
             // Verificar si el correo electrónico existe utilizando el servicio ZeroBounce
@@ -52,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $hashedPassword = password_hash($contrasena, PASSWORD_DEFAULT);
 
                      // Insertar los datos en la tabla usuarios
-            $query = "INSERT INTO usuarios (username, email, contrasena, secret) VALUES ('$username', '$email', '$hashedPassword', '$secret')";
+            $query = "INSERT INTO usuarios (username, email, contrasena) VALUES ('$username', '$email', '$hashedPassword')";
             $insertResult = pg_query($conn, $query);
 
                     // Verificar si la inserción fue exitosa
@@ -78,26 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-}
-
-
-// Función para generar un secreto aleatorio
-function generateRandomSecret()
-{
-    // Longitud del secreto (en bytes)
-    $length = 10; // Ajusta la longitud según tus necesidades
-
-    // Generar un secreto aleatorio utilizando la función random_bytes()
-    $randomBytes = random_bytes($length);
-
-    // Codificar el secreto en base32 utilizando base_convert()
-    $base32Characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; // Caracteres permitidos para Base32
-    $base32Secret = '';
-    foreach (str_split($randomBytes) as $byte) {
-        $base32Secret .= $base32Characters[ord($byte) & 31];
-    }
-
-    return $base32Secret;
 }
 
 

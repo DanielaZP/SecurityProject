@@ -32,14 +32,8 @@ function base32Encode($input)
     return $base32String;
 }
 
-// Lógica para obtener el secret aleatorio
-$secret = generateRandomSecret();
-
-// Generar el código QR
-$qrCodeUrl = generateQRCode($secret);
-
 // Función para generar un secret aleatorio de longitud $length
-function generateRandomSecret($length = 32)
+function generateRandomSecret($length = 16)
 {
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
     $charactersLength = strlen($characters);
@@ -66,12 +60,6 @@ function generateQRCode($secret)
 
     return 'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . urlencode($otpUri);
 }
-
-// Lógica para obtener el secret aleatorio
-$secret = generateRandomSecret();
-
-// Generar el código QR
-$qrCodeUrl = generateQRCode($secret);
 
 // Lógica para verificar el código ingresado por el usuario
 $isValidCode = false;
@@ -107,10 +95,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verificar si la contraseña coincide utilizando password_verify()
             if (password_verify($contrasena, $user['contrasena'])) {
                 
-            
-                 enviarCorreo($user['email'], $qrCodeUrl);
+             // Generar un nuevo secret aleatorio y actualizar la columna "secret" en la tabla "usuarios"
+             $newSecret = generateRandomSecret();
+             $updateQuery = "UPDATE usuarios SET secret = '$newSecret' WHERE email = '$email'";
+             pg_query($conn, $updateQuery);
 
-                // Contraseña válida, redireccionar a "inicio.php"
+             // Generar el nuevo código QR con el nuevo secret
+             $qrCodeUrl = generateQRCode($newSecret);
+
+                 enviarCorreo($user['email'], $qrCodeUrl);
+                 // Iniciar la sesión y guardar el correo electrónico en la sesión
+                 session_start();
+                  $_SESSION['email'] = $email;
+               
                 header("Location: 2fa.php");
                 exit();
             } else {
