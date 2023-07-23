@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         mailConfirmation($email);
 
                         // Redireccionar a "autenticacion.php"
-                        header("Location: Login.php");
+                        header("Location: inicio.php");
                         exit();
                     } else {
                         $error_message = "Error al insertar los datos";

@@ -8,6 +8,7 @@
 </head>
 <body>
     <form class="registro">
+     <img src="Imagenes/Archivo.jpg" class="avatar">
         <div class="cuadro">
             <div class="input-cuadro">
                 <label for="Archivo">Seleccione un Archivo</label>
@@ -18,7 +19,7 @@
                         var fileName = inputElement.files[0].name;
                     }
                 </script>
-                <!-- PASSWORD INPUT -->
+
                 <label for="password">Contraseña</label>
                 <input type="password" id="passwordInput" placeholder="Ingrese contraseña">
             </div>
@@ -83,5 +84,6 @@
             reader.readAsText(file);
         }
     </script>
+    <a href="Login.php" class="cerrar-sesion">Cerrar Sesión</a>
 </body>
 </html>
