@@ -83,5 +83,35 @@
             reader.readAsText(file);
         }
     </script>
+        <!-- Botón "Cerrar Sesión" en la parte superior derecha -->
+        <div style="position: absolute; top: 10px; right: 10px;">
+        <button id="cerrar-sesion-btn" style="background-color: blue; color: white;">Cerrar Sesión</button>
+    </div>
+
+    <!-- Cuadro de diálogo de confirmación para cerrar sesión -->
+    <div id="confirmar-cerrar-sesion" style="display: none; position: absolute; top: 50px; right: 10px; background-color: white; padding: 10px;">
+        <p>¿Seguro que desea cerrar sesión?</p>
+        <button id="confirmar-btn" style="background-color: blue; color: white;">Confirmar</button>
+        <button id="denegar-btn" style="margin-left: 10px;">Denegar</button>
+    </div>
+
+    <script>
+        // Mostrar el cuadro de diálogo de confirmación al hacer clic en "Cerrar Sesión"
+        document.getElementById('cerrar-sesion-btn').addEventListener('click', function () {
+            document.getElementById('confirmar-cerrar-sesion').style.display = 'block';
+        });
+
+        // Redireccionar a "login.php" al confirmar el cierre de sesión
+        document.getElementById('confirmar-btn').addEventListener('click', function () {
+            window.location.href = 'login.php';
+        });
+
+        // Ocultar el cuadro de diálogo de confirmación al denegar el cierre de sesión
+        document.getElementById('denegar-btn').addEventListener('click', function () {
+            document.getElementById('confirmar-cerrar-sesion').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
