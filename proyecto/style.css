@@ -16,8 +16,8 @@ body {
 }
 
 
-.registro {
-    background: #fff;
+.registro { 
+    background: #eaeaf1;
     margin-top: 150px;
     padding: 20px;
 }
@@ -108,15 +108,18 @@ h1 {
 
 
 input[type="text"],
-input[type="password"]   {
+input[type="password"],
+input[type=email]   {
     font-size: 15px;
     width: 100%;
     padding: 15px;
-    border: none;
+    border:#1a2537;
+    border-radius: 10px;
 }
 
 .input-cuadro {
     margin-bottom: 15px;
+    color:#010202;
 }
 
 .input-cuadro label {
@@ -138,6 +141,22 @@ input[type="password"]   {
 }
 
 .button:hover {
+    background: cadetblue;
+}
+
+.button1 {
+    border: none;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    background: #1a2537;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.button1:hover {
     background: cadetblue;
 }
 

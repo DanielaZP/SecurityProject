@@ -24,10 +24,10 @@
             </div>
 
             <div class="botones">
-                <button class="button" onclick="encriptar()">
+                <button class="button1" onclick="encriptar()">
                     Encriptar
                 </button>
-                <button class="button" onclick="desencriptar()">
+                <button class="button1" onclick="desencriptar()">
                     Desencriptar
                 </button>
             </div>
