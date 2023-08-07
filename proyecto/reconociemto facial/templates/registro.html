@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <h2>Registro de Usuario</h2>
+    <form method="POST" action="/registro" enctype="multipart/form-data">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+        <br>
+        <label for="imagen">Imagen de la Cara:</label>
+        <input type="file" name="imagen" accept="image/*" capture="camera" required>
+        <br>
+        <input type="submit" value="Registrar">
+    </form>
+</body>
+</html>

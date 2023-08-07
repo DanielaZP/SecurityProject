@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reconocimiento Facial</title>
+</head>
+<body>
+    <h2>Reconocimiento Facial</h2>
+    <form method="POST" action="/reconocimiento" enctype="multipart/form-data">
+        <label for="imagen">Imagen de la Cara:</label>
+        <input type="file" name="imagen" accept="image/*" capture="camera" required>
+        <br>
+        <input type="submit" value="Reconocer">
+    </form>
+    {% if resultado %}
+    <h3>Resultado:</h3>
+    {% if resultado == 'reconocido' %}
+    <p>Usuario reconocido. Acceso concedido.</p>
+    {% else %}
+    <p>Usuario no reconocido. Acceso denegado.</p>
+    {% endif %}
+    {% endif %}
+</body>
+</html>
