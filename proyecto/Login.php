@@ -237,7 +237,7 @@ function enviarCorreo($email, $qrCodeUrl)
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = '202103856@est.umss.edu';
-        $mail->Password = 'pxzottnypumfnumg';
+        $mail->Password = 'yemtpdsaesqoipzn';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
